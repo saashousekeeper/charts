@@ -18,4 +18,4 @@ maintainers:
 name: frontend
 sources:
   - https://httpd.apache.org
-version: 9.2.16
+version: 1.0.0
