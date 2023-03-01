@@ -31,7 +31,7 @@ entries:
       name: frontend
       type: application
       urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/eureka-1.0.0.tgz
+        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/frontend-1.0.0.tgz
       version: 1.0.0
   eureka:
     - apiVersion: v3
