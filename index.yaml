@@ -41,8 +41,6 @@ entries:
       digest: a1cbac69eca87da87826dcee43a7c28f1d4bdf14c8bb6414855ee61faf1fa3ef
       name: eureka
       type: application
-      sources:
-        - https://github.com/saashousekeeper/container/tree/main/saashousekeeper/eureka
       urls:
         - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/eureka-1.0.0.tgz
       version: 1.0.0

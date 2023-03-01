@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  registry: docker.io
+  registry: https://hub.docker.com/repositories/saashousekeeper
   repository: saashousekeeper/eureka
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
