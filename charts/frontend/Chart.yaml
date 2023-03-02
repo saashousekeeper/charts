@@ -5,7 +5,7 @@ apiVersion: v2
 appVersion: 1.0.0
 
 description: frontend nginx service
-home: https://github.com/saashousekeeper/charts/tree/main/housekeeper/frontend
+home: https://github.com/saashousekeeper/charts/tree/gh-pages/housekeeper/frontend
 keywords:
   - frontend
   - http
