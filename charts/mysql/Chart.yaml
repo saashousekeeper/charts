@@ -4,18 +4,16 @@ annotations:
 apiVersion: v2
 appVersion: 1.0.0
 
-description: eureka service
-home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/eureka
+description: mysql service
+home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/mysql
 keywords:
-  - eureka
-  - http
-  - https
-  - web
-  - java
+  - mysql
+  - database
+  - db
 maintainers:
   - name: saashousekeeper
     url: https://github.com/saashousekeeper/charts
-name: eureka
+name: mysql
 sources:
   - https://httpd.apache.org
 version: 1.0.0

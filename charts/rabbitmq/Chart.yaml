@@ -4,18 +4,17 @@ annotations:
 apiVersion: v2
 appVersion: 1.0.0
 
-description: eureka service
-home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/eureka
+description: rabbitmq
+home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/rabbitmq
 keywords:
-  - eureka
+  - rabbitmq
   - http
   - https
-  - web
-  - java
+  - mq
 maintainers:
   - name: saashousekeeper
     url: https://github.com/saashousekeeper/charts
-name: eureka
+name: rabbitmq
 sources:
   - https://httpd.apache.org
 version: 1.0.0
