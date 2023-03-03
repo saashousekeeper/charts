@@ -5,10 +5,11 @@
 replicaCount: 1
 
 image:
-  repository: saashousekeeper/demo1
+  registry: swr.cn-south-1.myhuaweicloud.com
+  repository: tansj/saas-housekeeper-eureka
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "latest"
+  tag: "1.1.1"
 
 imagePullSecrets: []
 nameOverride: ""
