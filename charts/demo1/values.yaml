@@ -5,7 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: demo1
+  registry: docker.io
+  repository: saashousekeeper/demo1
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
