@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: v1 #chart API 版本
 entries:
   mysql:
     - apiVersion: v3
@@ -10,7 +10,7 @@ entries:
       type: application
       urls:
         - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/mysql-1.0.0.tgz
-      version: 1.0.0
+      version: 1.0.0 #应用版本
   rabbitmq:
     - apiVersion: v3
       appVersion: latest
