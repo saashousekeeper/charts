@@ -11,6 +11,17 @@ entries:
       urls:
         - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/mysql-1.0.0.tgz
       version: 1.0.0
+  rabbitmq:
+    - apiVersion: v3
+      appVersion: latest
+      created: "2023-02-28T14:15:13.197352752Z"
+      description: A Spring Boot Helm chart for Kubernetes
+      digest: a1cba1d4bdf14c8bb641a7a87da8af1j8k5c69eee61f43fa3efc64e7h2b1c28f
+      name: rabbitmq
+      type: application
+      urls:
+        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/rabbitmq-1.0.0.tgz
+      version: 1.0.0
   frontend:
     - apiVersion: v3
       appVersion: latest
