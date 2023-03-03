@@ -1,15 +1,15 @@
 apiVersion: v1
 entries:
-  demo1:
+  mysql:
     - apiVersion: v3
       appVersion: latest
       created: "2023-02-28T14:15:13.197352752Z"
       description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c8bb641a7a87da87h26dc28fee61faf148k5c69ec64e43fa3ef
-      name: demo1
+      digest: a1cba1d4bdf14c8bb641a7a87da8af148k5c69ec64e7h2bdc28fee61f43fa3ef
+      name: mysql
       type: application
       urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/demo1-1.0.0.tgz
+        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/mysql-1.0.0.tgz
       version: 1.0.0
   frontend:
     - apiVersion: v3
