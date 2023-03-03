@@ -1,26 +1,15 @@
 apiVersion: v1
 entries:
-  mysql:
+  demo1:
     - apiVersion: v3
       appVersion: latest
-      created: "2023-03-01T11:38:13.197352752Z"
+      created: "2023-02-28T14:15:13.197352752Z"
       description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c8f8fee61faf1j8bm641ax8b5c69eca87da8w3fa3ef7826d64e
-      name: mysql
+      digest: a1cba1d4bdf14c8bb641a7a87da87h26dc28fee61faf148k5c69ec64e43fa3ef
+      name: demo1
       type: application
       urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/mysql-1.0.0.tgz
-      version: 1.0.0
-  rabbitmq:
-    - apiVersion: v3
-      appVersion: latest
-      created: "2023-03-01T11:38:13.197352752Z"
-      description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c828fee61faf1j8bm641a7c55c69eca87da87826d64e43fa3ef
-      name: rabbitmq
-      type: application
-      urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/rabbitmq-1.0.0.tgz
+        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/demo1-1.0.0.tgz
       version: 1.0.0
   frontend:
     - apiVersion: v3
