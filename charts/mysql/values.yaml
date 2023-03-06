@@ -83,5 +83,4 @@ affinity: {}
 
 auth:
   rootPassword: 1234
-  host: %
   database: mysql
