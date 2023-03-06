@@ -4,6 +4,12 @@
 
 replicaCount: 1
 
+mysql:
+  rootPassword: 1234
+  appUser: root
+  appPassword: 1234
+  appDatabase: config-jdbc
+
 image:
   registry: docker.io
   repository: saashousekeeper/mysql
