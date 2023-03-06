@@ -40,9 +40,9 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
         - env:
-            - name: MYSQL_ROOT_PASSWORD
+            - name: "MYSQL_ROOT_PASSWORD"
               value: {{ .Values.auth.rootPassword }}
-            - name: MYSQL_DATABASE
+            - name: "MYSQL_DATABASE"
               value: {{ .Values.auth.database }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
