@@ -81,6 +81,8 @@ tolerations: []
 
 affinity: {}
 
-auth:
-  rootPassword: "1234"
-  database: "mysql"
+env:
+  - name: "rootPassword"
+    value: "1234"
+  - name: "database"
+    value: "mysql"
