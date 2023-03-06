@@ -39,6 +39,13 @@ spec:
               protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        - env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: {{ .Values.auth.rootPassword }}
+            - name: MYSQL_ROOT_HOST
+              value: {{ .Values.auth.host }}
+            - name: MYSQL_DATABASE
+              value: {{ .Values.auth.database }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
