@@ -40,7 +40,6 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
-            - name:
             {{- range .Values.env }}
             - name: {{ .name }}
               value: {{ .value }}
