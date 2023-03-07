@@ -32,10 +32,8 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           env:
-            {{- range $name, $value := .Values.env }}
-            - name: {{ $name }}
-              value: {{ $value }}
-                  {{- end }}
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
