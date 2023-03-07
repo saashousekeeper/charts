@@ -4,6 +4,39 @@
 nameOverride: ""
 fullnameOverride: ""
 
+
+nfs:
+  server:
+  path: /ifs/kubernetes
+  mountOptions:
+
+# For creating the StorageClass automatically:
+storageClass:
+  create: true
+
+  # Set a provisioner name. If unset, a name will be generated.
+  # provisionerName:
+
+  # Set StorageClass as the default StorageClass
+  # Ignored if storageClass.create is false
+  defaultClass: false
+
+  # Set a StorageClass name
+  # Ignored if storageClass.create is false
+  name: nfs-client
+
+  # Allow volume to be expanded dynamically
+  allowVolumeExpansion: true
+
+  # Method used to reclaim an obsoleted volume
+  reclaimPolicy: Delete
+
+  # When set to false your PVs will not be archived by the provisioner upon deletion of the PVC.
+  archiveOnDelete: true
+
+  # Set access mode - ReadWriteOnce, ReadOnlyMany or ReadWriteMany
+  accessModes: ReadWriteOnce
+
 ### MYSQL
 mysql:
   password: 1234

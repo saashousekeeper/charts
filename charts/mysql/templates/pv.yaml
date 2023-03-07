@@ -1,20 +1,25 @@
+{{ if .Values.nfs.mountOptions -}}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: {{ template "mysql.fullname" . }}
+  name: pv-{{ template "mysql.fullname" . }}
+  labels:
+    mysql: {{ template "mysql.fullname" . }}
 spec:
   capacity:
-    storage: 10Gi
+    storage: 5Gi
   volumeMode: Filesystem
   accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
-  storageClassName: local-storage
-  local:
-    path: /mnt/asd
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-        - matchExpressions:
-            - key: kubernetes.io/hostname
-              operator: Exist
+    - {{ .Values.storageClass.accessModes }}
+  persistentVolumeReclaimPolicy: {{ .Values.storageClass.reclaimPolicy }}
+  storageClassName: ""
+  {{- if .Values.nfs.mountOptions }}
+  mountOptions:
+    {{- range .Values.nfs.mountOptions }}
+    - {{ . }}
+    {{- end }}
+  {{- end }}
+  nfs:
+    server: {{ .Values.nfs.server }}
+    path: {{ .Values.nfs.path }}
+{{ end -}}
