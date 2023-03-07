@@ -40,8 +40,20 @@ spec:
             - name: http
               containerPort: 3306
               protocol: TCP
+          volumeMounts:
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-initdb-pvc-claim
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
