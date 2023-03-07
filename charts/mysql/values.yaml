@@ -38,10 +38,10 @@ mysql:
   resources:
     requests:
       cpu: 250m
-      memory: 600Mi
+      memory: 1000Mi
       limits:
         cpu: 500m
-        memory: 1000Mi
+        memory: 2Gi
   nodeSelector: {}
   tolerations: []
   affinity: {}
