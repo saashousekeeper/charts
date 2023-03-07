@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-{{ template "mysql.fullname" . }}
+  name: {{ include "pv.name" . }}
   labels:
-    mysql: {{ template "mysql.fullname" . }}
+    mysql: {{ include "pv.name" . }}
 spec:
   capacity:
     storage: 5Gi

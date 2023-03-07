@@ -2,14 +2,14 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: {{ template "mysql.fullname" . }}
+  name: {{ include "pvc.name" . }}
   namespace: {{ .Release.Namespace }}
 {{- with .Values.mysql.persistence.annotations  }}
   annotations:
 {{ toYaml . | indent 4 }}
 {{- end }}
   labels:
-    app: {{ template "mysql.fullname" . }}
+    app: {{ include "pvc.name" . }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     release: "{{ .Release.Name }}"
     heritage: "{{ .Release.Service }}"
@@ -26,4 +26,6 @@ spec:
   storageClassName: "{{ .Values.mysql.persistence.storageClass }}"
 {{- end }}
 {{- end }}
+  volumeName: {{ include "pv.name" . }}
+
 {{- end }}

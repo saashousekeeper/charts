@@ -4,7 +4,9 @@
 nameOverride: ""
 fullnameOverride: ""
 
-
+storage:
+  pv: my-pv
+  pvc: my-pvc
 nfs:
   server:
   path: /ifs/kubernetes
