@@ -20,6 +20,7 @@ mysql:
     accessMode: ReadWriteOnce
     size: "10Gi"
     storageClass: ""
+    annotations: {}
   service:
     type: ClusterIP
     port: "3306"

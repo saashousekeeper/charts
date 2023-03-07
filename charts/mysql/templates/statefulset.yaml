@@ -85,6 +85,13 @@ spec:
       - name: init-script
         configMap:
           name: {{ include "mysql.fullname" . }}-init-script
+      - name: data
+        {{- if .Values.mysql.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.mysql.persistence.existingClaim | default (include "mysql.fullname" .) }}
+        {{- else }}
+        emptyDir: { }
+          {{ end }}
 {{- if .Values.mysql.persistence.enabled }}
   volumeClaimTemplates:
   - metadata:
