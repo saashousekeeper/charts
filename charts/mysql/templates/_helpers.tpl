@@ -1,102 +1,68 @@
+{{/*
+Expand the name of the chart.
+*/}}
+{{- define "mysql.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- end }}
 
+{{/*
+Create a default fully qualified app name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+If release name contains chart name it will be used as a full name.
+*/}}
 {{- define "mysql.fullname" -}}
-{{ include "mysql.fullname" . }}-mysql
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- if contains $name .Release.Name }}
+{{- .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
 {{- end }}
-
-{{- define "mysql.config" -}}
-{{ include "mysql.fullname" . }}-config
 {{- end }}
-
-{{- define "mysql.secret" -}}
-{{ include "mysql.fullname" . }}-secret
-{{- end }}
-
-{{- define "mysql.secret-root" -}}
-{{ include "mysql.fullname" . }}-secret-root
 {{- end }}
 
 {{- define "mysql.root-password" -}}
-{{- if .Values.mysql.root_password }}
-{{- .Values.mysql.root_password | b64enc }}
-{{- else }}
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace (include "mysql.secret-root" .) ) -}}
-{{- if $secret }}
-{{- $secret.data.MYSQL_ROOT_PASSWORD }}
-{{- else }}
-{{- if .Values.mysql.generate_passwords }}
-{{- randAlphaNum 16 | b64enc }}
-{{- else }}
-{{- "kubevious" | b64enc }}
+{{ default .Values.mysql.password }}
+{{ end }}
+{{- define "mysql.secret-root" -}}
+{{ include "mysql.fullname" . }}-secret-root
 {{- end }}
-{{- end }}
-{{- end }}
+{{- define "mysql.root-password" -}}
 {{- end }}
 
-
-{{- define "mysql.host" -}}
-{{- if .Values.mysql.external.enabled }}
-{{- .Values.mysql.external.host }}
-{{- else }}
-{{- include "mysql.fullname" . }}
-{{- end }}
-{{- end }}
-
-
-{{- define "mysql.port" -}}
-{{- if .Values.mysql.external.enabled }}
-{{- .Values.mysql.external.port }}
-{{- else }}
-{{- .Values.mysql.service.port }}
-{{- end }}
-{{- end }}
-
-
-{{- define "mysql.database" -}}
-{{- if .Values.mysql.external.enabled }}
-{{- .Values.mysql.external.database }}
-{{- else }}
-{{- .Values.mysql.db_name }}
-{{- end }}
-{{- end }}
-
-
-{{- define "mysql.user" -}}
-{{- if .Values.mysql.external.enabled }}
-{{- .Values.mysql.external.user }}
-{{- else }}
-{{- .Values.mysql.db_user }}
-{{- end }}
-{{- end }}
-
-
-{{- define "mysql.user-password" -}}
-{{- .Values.mysql.external.password | b64enc }}
-{{- if .Values.mysql.external.enabled }}
-{{- else }}
-{{- if and (.Values.mysql.db_user) (not (eq .Values.mysql.db_user "root")) }}
-{{- if .Values.mysql.db_password }}
-{{- .Values.mysql.db_password | b64enc }}
-{{- else }}
-{{- $secret := (lookup "v1" "Secret" .Release.Namespace (include "mysql.secret" .) ) -}}
-{{- if $secret }}
-{{- $secret.data.MYSQL_PASS }}
-{{- else }}
-{{- if .Values.mysql.generate_passwords }}
-{{- randAlphaNum 16 | b64enc }}
-{{- else }}
-{{- "kubevious" | b64enc }}
-{{- end }}
-{{- end }}
-{{- end }}
-{{- else }}
-{{- include "mysql.root-password" . }}
-{{- end }}
-{{- end }}
-{{- end }}
 
 
 {{/*
-Create the name of the service account to use for mysql
+Create chart name and version as used by the chart label.
+*/}}
+{{- define "mysql.chart" -}}
+{{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Common labels
+*/}}
+{{- define "mysql.labels" -}}
+helm.sh/chart: {{ include "mysql.chart" . }}
+{{ include "mysql.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "mysql.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "mysql.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
 */}}
 {{- define "mysql.serviceAccountName" -}}
 {{- if .Values.mysql.serviceAccount.create }}

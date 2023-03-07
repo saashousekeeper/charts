@@ -1,25 +1,19 @@
-{{- if not .Values.mysql.external.enabled -}}
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "mysql.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  name: {{ include .Values.mysql.name . }}
   labels:
-    app.kubernetes.io/component: {{ include "mysql.fullname" . }}
-    {{- include "mysql.labels" . | nindent 4 }}
+    app.kubernetes.io/component: {{ include .Values.mysql.name . }}
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/component: {{ include "mysql.fullname" . }}
-      {{- include "mysql.match-labels" . | nindent 6 }}
-  serviceName: {{ include "mysql.fullname" . }}
+      app.kubernetes.io/component: {{ include .Values.mysql.name . }}
+  serviceName: {{ .Values.mysql.name . }}
   replicas: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/component: {{ include "mysql.fullname" . }}
-        {{- include "mysql.base-labels" . | nindent 8 }}
+        app.kubernetes.io/component: {{ .Values.mysql.name . }}
     spec:
       {{- with .Values.mysql.imagePullSecrets }}
       imagePullSecrets:
@@ -51,19 +45,6 @@ spec:
         image: "{{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}"
         imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
         env:
-        - name: NODE_ENV
-          value: "production"
-        - name: MYSQL_DATABASE
-          value: "{{ .Values.mysql.db_name }}"
-        {{- if and (.Values.mysql.db_user) (not (eq .Values.mysql.db_user "root")) }}
-        - name: MYSQL_USER
-          value: "{{ .Values.mysql.db_user }}"
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "mysql.secret" . }}
-              key: MYSQL_PASS
-        {{- end }}
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -80,33 +61,6 @@ spec:
           mountPath: /etc/mysql/conf.d
         - name: init-script
           mountPath: /docker-entrypoint-initdb.d
-        livenessProbe:
-          exec:
-            {{ if eq .Values.mysql.db_user "root" }}
-            command: ["mysqladmin", "ping"]
-            {{ else }}
-            command: ["mysqladmin", "ping", "-u$MYSQL_USER", "-p$MYSQL_PASSWORD"]
-            {{ end }}
-          initialDelaySeconds: 120
-          periodSeconds: 10
-          timeoutSeconds: 5
-        readinessProbe:
-          exec:
-            # Check we can execute queries over TCP (skip-networking is off).
-            command:
-              - bash 
-              - "-c"
-            {{ if eq .Values.mysql.db_user "root" }}
-              - | 
-                mysql -p$MYSQL_ROOT_PASSWORD -h 127.0.0.1 -e 'SELECT 1'
-            {{ else }}
-              - | 
-                mysql -u$MYSQL_USER -p$MYSQL_PASSWORD -h 127.0.0.1 -e 'SELECT 1'
-            {{ end }}
-              
-          initialDelaySeconds: 5
-          periodSeconds: 2
-          timeoutSeconds: 1
         resources:
           {{- toYaml .Values.mysql.resources | nindent 12 }}
       serviceAccountName: {{ include "mysql.serviceAccountName" . }}
@@ -147,4 +101,3 @@ spec:
       - name: data
         emptyDir: {}
 {{- end }}
-{{- end -}}

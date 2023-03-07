@@ -6,22 +6,15 @@ fullnameOverride: ""
 
 ### MYSQL
 mysql:
+  password: 1234
   external:
     enabled: false
-    host: ""
-    port: "3306"
-    database: "mysql"
-    user: "root"
-    password: "1234"
+  name: mysql
   image:
     repository: mysql
     tag: 8.0.30
     pullPolicy: IfNotPresent
-  db_name: root
-  db_user: "root"
   generate_passwords: false
-  db_password: "1234"
-  root_password: "1234"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
