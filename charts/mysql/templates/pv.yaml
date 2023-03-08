@@ -1,25 +1,29 @@
-{{ if .Values.nfs.mountOptions -}}
-apiVersion: v1
 kind: PersistentVolume
+apiVersion: v1
 metadata:
-  name: {{ include "pv.name" . }}
+  name: mysql-initdb-pv-volume
   labels:
-    mysql: {{ include "pv.name" . }}
+    type: local
+    app: mysql
 spec:
+  storageClassName: manual
   capacity:
-    storage: 5Gi
-  volumeMode: Filesystem
+    storage: 1Gi
   accessModes:
-    - {{ .Values.storageClass.accessModes }}
-  persistentVolumeReclaimPolicy: {{ .Values.storageClass.reclaimPolicy }}
-  storageClassName: ""
-  {{- if .Values.nfs.mountOptions }}
-  mountOptions:
-    {{- range .Values.nfs.mountOptions }}
-    - {{ . }}
-    {{- end }}
-  {{- end }}
-  nfs:
-    server: {{ .Values.nfs.server }}
-    path: {{ .Values.nfs.path }}
-{{ end -}}
+    - ReadOnlyMany
+  hostPath:
+    path: "/path/to/initdb/sql/scripts"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mysql-initdb-pvc-claim
+  labels:
+    app: mysql
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Gi

@@ -5,12 +5,6 @@ Expand the name of the chart.
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
-{{- define "pv.name" -}}
-{{- default .Values.storage.pv }}
-{{- end }}
-{{- define "pvc.name" -}}
-{{- default .Values.storage.pvc }}
-{{- end }}
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
@@ -28,17 +22,6 @@ If release name contains chart name it will be used as a full name.
 {{- end }}
 {{- end }}
 {{- end }}
-
-{{- define "mysql.root-password" -}}
-{{ default .Values.mysql.password }}
-{{ end }}
-{{- define "mysql.secret-root" -}}
-{{ include "mysql.fullname" . }}-secret-root
-{{- end }}
-{{- define "mysql.root-password" -}}
-{{- end }}
-
-
 
 {{/*
 Create chart name and version as used by the chart label.
@@ -71,9 +54,9 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "mysql.serviceAccountName" -}}
-{{- if .Values.mysql.serviceAccount.create }}
-{{- default (include "mysql.fullname" .) .Values.mysql.serviceAccount.name }}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "mysql.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
-{{- default "default" .Values.mysql.serviceAccount.name }}
+{{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
