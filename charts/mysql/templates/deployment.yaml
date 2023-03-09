@@ -33,7 +33,7 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "1234"
+              value: {{ .Values.env.rootPassword }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

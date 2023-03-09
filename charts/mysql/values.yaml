@@ -3,7 +3,8 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-
+env:
+  rootPassword: 1234
 image:
   repository: saashousekeeper/mysql
   pullPolicy: IfNotPresent

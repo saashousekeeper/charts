@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "rabbitmq.fullname" . }}
   labels:
@@ -27,18 +27,50 @@ spec:
       serviceAccountName: {{ include "rabbitmq.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: "rabbitmq-config"
+          image: busybox:1.32.0
+          volumeMounts:
+            - name: rabbitmq-config
+              mountPath: /tmp/rabbitmq
+            - name: rabbitmq-config-rw
+              mountPath: /etc/rabbitmq
+          command:
+            - sh
+            - -c
+            - cp /tmp/rabbitmq/rabbitmq.conf /etc/rabbitmq/rabbitmq.conf && echo '' >> /etc/rabbitmq/rabbitmq.conf;
+              cp /tmp/rabbitmq/enabled_plugins /etc/rabbitmq/enabled_plugins;
+              cp /tmp/rabbitmq/definitions.json /etc/rabbitmq/definitions.json;
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          volumeMounts:
+            - name: rabbitmq-config-rw
+              mountPath: "/etc/rabbitmq"
           ports:
-            - name: http
+            - name: port-5672
               containerPort: 5672
-              protocol: TCP
+            - name: port-15672
+              containerPort: 15672
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: rabbitmq-config
+          configMap:
+            name: rabbitmq-config
+            optional: false
+            items:
+              - key: enabled_plugins
+                path: "enabled_plugins"
+              - key: rabbitmq.conf
+                path: "rabbitmq.conf"
+              - key: definitions.json
+                path: "definitions.json"
+        - name: rabbitmq-config-rw
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
