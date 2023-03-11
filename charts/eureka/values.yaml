@@ -37,6 +37,7 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  name: eureka
   type: ClusterIP
   port: 8761
   targetPort: 8761

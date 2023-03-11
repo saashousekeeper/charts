@@ -352,6 +352,7 @@ busyboxImage:
 terminationGracePeriodSeconds: 10
 
 service:
+  name: rabbitmq
   annotations: {}
   clusterIP: None
 

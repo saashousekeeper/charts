@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "eureka.fullname" . }}
+  name: {{ .Values.service.name }}
   labels:
     {{- include "eureka.labels" . | nindent 4 }}
 spec:
