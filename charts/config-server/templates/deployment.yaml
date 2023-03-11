@@ -54,6 +54,10 @@ spec:
               value: "root"
             - name: mysql.password
               value: "1234"
+            - name: giteeUser
+              value: "zacharyy2023@outlook.com"
+            - name: giteePassword
+              value: "tomorrow0.0"
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

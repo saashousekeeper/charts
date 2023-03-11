@@ -5,7 +5,7 @@
 global:
   active:
   eurekaDefaultZone:
-  CONFIG_SERVER:
+  configServer:
   rabbitmq:
   rabbitmqUsername:
   rabbitmqPassword:

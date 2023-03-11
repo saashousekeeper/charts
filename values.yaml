@@ -4,13 +4,13 @@
 global:
   active: pro
   eurekaDefaultZone: http://eurekaAdmin:123456@eureka.default.svc.cluster.local:8761/eureka
-  CONFIG_SERVER: http://config-server.default.svc.cluster.local:3344
+  configServer: http://config-server.default.svc.cluster.local:3344
   rabbitmq: rabbitmq.default.svc.cluster.local
-  rabbitmqUsername: guest
-  rabbitmqPassword: guest
-  mysqlHost: mysql
-  mysqlUsername: root
-  mysqlPassword: 1234
+  rabbitmqUsername: "guest"
+  rabbitmqPassword: "guest"
+  mysqlHost: mysql.default.svc.cluster.local
+  mysqlUsername: "root"
+  mysqlPassword: "1234"
 
 nameOverride: ""
 fullnameOverride: ""

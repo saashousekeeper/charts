@@ -41,7 +41,7 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: {{ .Values.global.active }}
             - name: CONFIG_SERVER
-              value: {{ .Values.global.active }}
+              value: {{ .Values.global.configServer }}
             - name: eureka.defaultZone
               value: {{ .Values.global.eurekaDefaultZone }}
             - name: rabbitmq.host
