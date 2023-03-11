@@ -3,108 +3,66 @@ kind: StatefulSet
 metadata:
   name: {{ include "mysql.fullname" . }}
   labels:
-    app.kubernetes.io/component: {{ include "mysql.fullname" . }}
+    {{- include "mysql.labels" . | nindent 4 }}
 spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
-      app.kubernetes.io/component: {{ include "mysql.fullname" . }}
-  serviceName: {{ include "mysql.fullname" . }}
-  replicas: 1
+      {{- include "mysql.selectorLabels" . | nindent 6 }}
   template:
     metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       labels:
-        app.kubernetes.io/component: {{ include "mysql.fullname" . }}
+        {{- include "mysql.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.mysql.imagePullSecrets }}
+      {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      securityContext:
-        {{- toYaml .Values.mysql.podSecurityContext | nindent 8 }}
-      initContainers:
-      - name: init-mysql
-        image: {{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}
-        imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
-        command:
-        - bash
-        - "-c"
-        - |
-          set -ex
-          echo "[mysqld]" > /mnt/conf.d/server-id.cnf
-          echo "server-id=1" >> /mnt/conf.d/server-id.cnf
-          echo "[mysqld]" > /mnt/conf.d/bin-logs.cnf
-          echo "binlog_expire_logs_seconds=259200" >> /mnt/conf.d/bin-logs.cnf
-          cp /mnt/config-map/master.cnf /mnt/conf.d/
-        volumeMounts:
-        - name: conf
-          mountPath: /mnt/conf.d
-        - name: config-map
-          mountPath: /mnt/config-map
-      containers:
-      - name: mysql
-        image: "{{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}"
-        imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: {{ include "mysql.secret-root" . }}
-              key: MYSQL_ROOT_PASSWORD
-        ports:
-        - name: mysql
-          containerPort: 3306
-        volumeMounts:
-        - name: "data"
-          mountPath: /var/lib/mysql
-          subPath: mysql
-        - name: conf
-          mountPath: /etc/mysql/conf.d
-        - name: init-script
-          mountPath: /docker-entrypoint-initdb.d
-        resources:
-          {{- toYaml .Values.mysql.resources | nindent 12 }}
       serviceAccountName: {{ include "mysql.serviceAccountName" . }}
-      {{- with .Values.mysql.nodeSelector }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "1234"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 3306
+              protocol: TCP
+          volumeMounts:
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-initdb-pvc-claim
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
+      {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.mysql.affinity }}
+      {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.mysql.tolerations }}
+      {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      volumes:
-      - name: conf
-        emptyDir: {}
-      - name: config-map
-        configMap:
-          name: {{ include "mysql.fullname" . }}-conf
-      - name: init-script
-        configMap:
-          name: {{ include "mysql.fullname" . }}-init-script
-      - name: data
-        {{- if .Values.mysql.persistence.enabled }}
-        persistentVolumeClaim:
-          claimName: {{ .Values.mysql.persistence.existingClaim | default (include "mysql.fullname" .) }}
-        {{- else }}
-        emptyDir: { }
-          {{ end }}
-{{- if .Values.mysql.persistence.enabled }}
-  volumeClaimTemplates:
-  - metadata:
-      name: "data"
-    spec:
-      accessModes: ["{{ .Values.mysql.persistence.accessMode }}"]
-{{- if .Values.mysql.persistence.storageClass }}
-      storageClassName: "{{ .Values.mysql.persistence.storageClass }}"
-{{- end }}
-      resources:
-        requests:
-          storage: {{ .Values.mysql.persistence.size }}
-{{- else }}
-      - name: data
-        emptyDir: {}
-{{- end }}
