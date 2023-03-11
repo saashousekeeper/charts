@@ -3,17 +3,16 @@ annotations:
   licenses: Apache-2.0
 apiVersion: v2
 appVersion: 1.0.0
-
 description: mysql service
 home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/mysql
 keywords:
-  - mysql
-  - database
-  - db
+- mysql
+- database
+- db
 maintainers:
-  - name: saashousekeeper
-    url: https://github.com/saashousekeeper/charts
+- name: saashousekeeper
+  url: https://github.com/saashousekeeper/charts
 name: mysql
 sources:
-  - https://httpd.apache.org
+- https://httpd.apache.org
 version: 1.0.0
