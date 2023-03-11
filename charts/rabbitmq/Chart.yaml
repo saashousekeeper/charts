@@ -1,20 +1,19 @@
-annotations:
-  category: Infrastructure
-  licenses: Apache-2.0
-apiVersion: v2
+apiVersion: v1
 appVersion: 1.0.0
-
-description: rabbitmq
-home: https://github.com/saashousekeeper/charts/tree/gh-pages/charts/rabbitmq
+deprecated: true
+description: DEPRECATED - Highly available RabbitMQ cluster, the open source message
+  broker software that implements the Advanced Message Queuing Protocol (AMQP).
+home: https://www.rabbitmq.com
+icon: https://bitnami.com/assets/stacks/rabbitmq/img/rabbitmq-stack-220x234.png
 keywords:
-  - rabbitmq
-  - http
-  - https
-  - mq
-maintainers:
-  - name: saashousekeeper
-    url: https://github.com/saashousekeeper/charts
+- rabbitmq
+- message queue
+- AMQP
+- AMQPS
+- MQTT
+- STOMP
 name: rabbitmq
 sources:
-  - https://httpd.apache.org
+- https://github.com/rabbitmq/rabbitmq
+- https://github.com/docker-library/rabbitmq
 version: 1.0.0
