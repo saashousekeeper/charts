@@ -1,6 +1,10 @@
 ## RabbitMQ application credentials
 ## Ref: http://rabbitmq.com/access-control.html
 ##
+
+nameOverride: ""
+fullnameOverride: ""
+
 rabbitmqUsername: guest
 # rabbitmqPassword:
 
@@ -67,7 +71,14 @@ definitions:
          "configure": ".*",
          "write": ".*",
          "read": ".*"
-    }
+    },
+    {
+             "user": "guest",
+             "vhost": "/",
+             "configure": ".*",
+             "write": ".*",
+             "read": ".*"
+        }
   topicPermissions: |-
   #   {
   #     "user": "myUsername",
@@ -352,6 +363,8 @@ busyboxImage:
 terminationGracePeriodSeconds: 10
 
 service:
+  port: 5672
+  nodePort: 15672
   name: rabbitmq
   annotations: {}
   clusterIP: None
@@ -369,9 +382,9 @@ service:
   ## Customize nodePort number when the service type is NodePort
   ### Ref: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
   ###
-  epmdNodePort: null
-  amqpNodePort: null
-  managerNodePort: null
+  epmdNodePort: 4369
+  amqpNodePort: 5672
+  managerNodePort: 32672
 
   ## Custom annotations for discovery service
   ## Will fallback to `service.annotations` while `separateAnnotations: false`

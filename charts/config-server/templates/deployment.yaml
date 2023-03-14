@@ -35,6 +35,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
+              hostPort: 3344
               containerPort: 3344
               protocol: TCP
           env:

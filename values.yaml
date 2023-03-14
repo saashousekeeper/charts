@@ -8,7 +8,7 @@ global:
   rabbitmq: rabbitmq.default.svc.cluster.local
   rabbitmqUsername: "guest"
   rabbitmqPassword: "guest"
-  mysqlHost: mysql.default.svc.cluster.local
+  mysqlHost: mysql
   mysqlUsername: "root"
   mysqlPassword: "1234"
 

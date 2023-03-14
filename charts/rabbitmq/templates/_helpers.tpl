@@ -6,6 +6,19 @@ Expand the name of the chart.
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
+{{- define "rabbitmq.labels" -}}
+helm.sh/chart: {{ include "rabbitmq.chart" . }}
+{{ include "rabbitmq.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{- define "rabbitmq.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "rabbitmq.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
 {{/*
 Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).

@@ -5,7 +5,7 @@ metadata:
   annotations:
 {{ tpl (toYaml .Values.service.annotations) . | indent 4 }}
 {{- end }}
-  name: {{ .Values.service.name }}
+  name: {{ template "rabbitmq.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
     app: {{ template "rabbitmq.name" . }}
@@ -40,7 +40,7 @@ spec:
     - name: amqps
       protocol: TCP
       port: {{ .Values.rabbitmqAmqpsSupport.amqpsNodePort }}
-      targetPort: amqps
+      targetPort: {{ .Values.rabbitmqAmqpsSupport.amqpsNodePort }}
     {{- end }}
     - name: http
       protocol: TCP
@@ -48,21 +48,21 @@ spec:
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.managerNodePort }}
       {{- end }}
-      targetPort: http
+      targetPort: {{ .Values.service.managerNodePort }}
     - name: amqp
       protocol: TCP
       port: {{ .Values.rabbitmqNodePort }}
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.amqpNodePort }}
       {{- end }}
-      targetPort: amqp
+      targetPort: {{ .Values.service.amqpNodePort }}
     - name: epmd
       protocol: TCP
       port: {{ .Values.rabbitmqEpmdPort }}
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.epmdNodePort }}
       {{- end }}
-      targetPort: epmd
+      targetPort: {{ .Values.service.epmdNodePort }}
     {{- if .Values.rabbitmqSTOMPPlugin.enabled }}
     - name: stomp-tcp
       protocol: TCP
