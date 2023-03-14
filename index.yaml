@@ -1,47 +1,14 @@
 apiVersion: v1 #chart API 版本
 entries:
-  mysql:
+  housekeeper:
     - apiVersion: v3
       appVersion: latest
       created: "2023-02-28T14:15:13.197352752Z"
       description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c8bb641a7a87da8af148k5c69ec64e7h2bdc28fee61f43fa3ef
-      name: mysql
+      digest: a1cba1d4bdf14cc69ec64e7h2gdc8bux41a7a87da8af148k528fee61f43fa3ef
+      name: housekeeper
       type: application
       urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/mysql-1.0.0.tgz
+        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/housekeeper-1.0.0.tgz
       version: 1.0.0 #应用版本
-  rabbitmq:
-    - apiVersion: v3
-      appVersion: latest
-      created: "2023-02-28T14:15:13.197352752Z"
-      description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c8bb641a7a87da8af1j8k5c69eee61f43fa3efc64e7h2b1c28f
-      name: rabbitmq
-      type: application
-      urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/rabbitmq-1.0.0.tgz
-      version: 1.0.0
-  frontend:
-    - apiVersion: v3
-      appVersion: latest
-      created: "2023-02-28T14:15:13.197352752Z"
-      description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cba1d4bdf14c8bb641a7c28fee61faf14855c69eca87da87826d64e43fa3ef
-      name: frontend
-      type: application
-      urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/frontend-1.0.0.tgz
-      version: 1.0.0
-  eureka:
-    - apiVersion: v3
-      appVersion: latest
-      created: "2023-02-27T10:21:13.197352752Z"
-      description: A Spring Boot Helm chart for Kubernetes
-      digest: a1cbac69eca87da87826dcee43a7c28f1d4bdf14c8bb6414855ee61faf1fa3ef
-      name: eureka
-      type: application
-      urls:
-        - https://github.com/saashousekeeper/charts/raw/gh-pages/alpine/eureka-1.0.0.tgz
-      version: 1.0.0
 generated: "2023-02-27T11:38:13.197373951Z"
