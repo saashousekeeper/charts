@@ -8,9 +8,25 @@ dependencies:
     version: 1.0.0
   - name: rabbitmq
     version: 1.0.0
-  - name: config-server
-    version: 1.0.0
   - name: eureka
     version: 1.0.0
+  - name: config-server
+    version: 1.0.0
   - name: frontend
+    version: 1.0.0
+  - name: tenantinfo
+    version: 1.0.0
+  - name: event-tracking
+    version: 1.0.0
+  - name: gateway
+    version: 1.0.0
+  - name: message
+    version: 1.0.0
+  - name: order
+    version: 1.0.0
+  - name: publish
+    version: 1.0.0
+  - name: task
+    version: 1.0.0
+  - name: userinfo
     version: 1.0.0
