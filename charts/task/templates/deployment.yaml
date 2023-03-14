@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "tenantinfo-service.fullname" . }}
+  name: {{ include "task.fullname" . }}
   labels:
-    {{- include "tenantinfo-service.labels" . | nindent 4 }}
+    {{- include "task.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "tenantinfo-service.selectorLabels" . | nindent 6 }}
+      {{- include "task.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "tenantinfo-service.selectorLabels" . | nindent 8 }}
+        {{- include "task.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "tenantinfo-service.serviceAccountName" . }}
+      serviceAccountName: {{ include "task.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:

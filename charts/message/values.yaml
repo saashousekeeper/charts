@@ -1,22 +1,23 @@
-# Default values for tenantinfo-service.
+# Default values for message.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 global:
-  active:
-  eurekaDefaultZone:
-  configServer:
-  rabbitmq:
-  rabbitmqUsername:
-  rabbitmqPassword:
-  mysqlHost:
-  mysqlUsername:
-  mysqlPassword:
+  active: pro
+  eurekaDefaultZone: http://eurekaAdmin:123456@eureka.default.svc.cluster.local:8761/eureka
+  configServer: http://config-server.default.svc.cluster.local:3344
+  rabbitmq: rabbitmq.default.svc.cluster.local
+  rabbitmqUsername: "guest"
+  rabbitmqPassword: "guest"
+  mysqlHost: mysql.default.svc.cluster.local
+  mysqlUsername: "root"
+  mysqlPassword: "1234"
+
 
 replicaCount: 1
 
 image:
-  repository: saashousekeeper/tenantinfo-service
+  repository: saashousekeeper/message
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.0"
@@ -49,7 +50,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 8500
+  port: 8175
 
 ingress:
   enabled: false

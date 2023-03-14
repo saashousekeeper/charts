@@ -23,13 +23,13 @@ data:
     CREATE TABLE `config-jdbc`.`properties`
     (
         `id`          bigint                                          NOT NULL AUTO_INCREMENT,
-        `key`        varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-        `value`      varchar(500) CHARACTER SET utf8MB4 COLLATE utf8_bin DEFAULT NULL,
-        `application` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-        `profile`     varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-        `label`       varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin  DEFAULT NULL,
+        `key`        varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+        `value`      varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+        `application` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+        `profile`     varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+        `label`       varchar(50) CHARACTER SET utf8 COLLATE utf8_bin  DEFAULT NULL,
         PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8MB4 COLLATE=utf8_bin;
+    ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
     --
     -- 创建默认数据库
@@ -59,7 +59,7 @@ data:
         `success`        tinyint(1) NOT NULL,
         PRIMARY KEY (`installed_rank`),
         KEY              `flyway_schema_history_s_idx` (`success`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
     --
     -- Table structure for table `message`
@@ -81,7 +81,7 @@ data:
         `updated_by`     varchar(32)  DEFAULT NULL COMMENT '更新人',
         `updated_time`   datetime     DEFAULT NULL COMMENT '更新时间',
         PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='消息表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='消息表';
 
     --
     -- Table structure for table `t_customization`
@@ -94,9 +94,9 @@ data:
         `config_id`  bigint NOT NULL AUTO_INCREMENT COMMENT '配置ID',
         `style_flag` tinyint                                                DEFAULT NULL COMMENT '主题标识',
         `store_name` varchar(50)                                            DEFAULT NULL COMMENT '店名',
-        `tenant_id`  varchar(50) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '租户标识',
+        `tenant_id`  varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '租户标识',
         PRIMARY KEY (`config_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='租户配置表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COMMENT='租户配置表';
 
     --
     -- Table structure for table `t_housekeeper_service`
@@ -107,19 +107,19 @@ data:
     CREATE TABLE `housekeeping`.`t_housekeeper_service`
     (
         `id`            bigint NOT NULL AUTO_INCREMENT COMMENT '服务ID',
-        `service_name`  varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '服务名称',
-        `service_desc`  varchar(500) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '服务描述',
+        `service_name`  varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务名称',
+        `service_desc`  varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务描述',
         `img_src`       varchar(500)                                            DEFAULT NULL COMMENT '图片地址',
-        `created_by`    varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '创建人',
+        `created_by`    varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '创建人',
         `created_time`  datetime                                                DEFAULT NULL COMMENT '创建时间',
-        `updated_by`    varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '更新人',
+        `updated_by`    varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '更新人',
         `updated_time`  datetime                                                DEFAULT NULL COMMENT '更新时间',
-        `servie_status` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci   DEFAULT NULL COMMENT '服务状态',
-        `delete_flag`   varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci   DEFAULT '0' COMMENT '删除标志',
-        `revision`      varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '乐观锁',
+        `servie_status` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci   DEFAULT NULL COMMENT '服务状态',
+        `delete_flag`   varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci   DEFAULT '0' COMMENT '删除标志',
+        `revision`      varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '乐观锁',
         `display_price` decimal(24, 6)                                          DEFAULT NULL COMMENT '服务展示价格',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='服务主表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='服务主表';
 
     --
     -- Table structure for table `t_order`
@@ -151,7 +151,7 @@ data:
         `updated_time`     datetime       DEFAULT NULL COMMENT '更新时间',
         `employee_phone`   varchar(255)   DEFAULT NULL COMMENT '工人电话',
         PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='订单表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单表';
 
     --
     -- Table structure for table `t_service_option`
@@ -163,15 +163,15 @@ data:
     (
         `id`               bigint NOT NULL AUTO_INCREMENT COMMENT '选项ID',
         `specification_id` bigint NOT NULL COMMENT '规格ID',
-        `name`             varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '选项名称',
-        `created_by`       varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '创建人',
+        `name`             varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '选项名称',
+        `created_by`       varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '创建人',
         `created_time`     datetime                                                DEFAULT NULL COMMENT '创建时间',
-        `updated_by`       varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '更新人',
+        `updated_by`       varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '更新人',
         `updated_time`     datetime                                                DEFAULT NULL COMMENT '更新时间',
-        `revision`         varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '乐观锁',
-        `delete_flag`      varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci   DEFAULT '0' COMMENT '删除标志',
+        `revision`         varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '乐观锁',
+        `delete_flag`      varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci   DEFAULT '0' COMMENT '删除标志',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='规格选项表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='规格选项表';
 
     --
     -- Table structure for table `t_service_selection`
@@ -184,14 +184,14 @@ data:
         `id`           bigint NOT NULL AUTO_INCREMENT COMMENT '选集ID',
         `option_id`    bigint                                                 DEFAULT NULL COMMENT '选项ID',
         `sku_id`       bigint                                                 DEFAULT NULL COMMENT 'SKU_ID',
-        `created_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+        `created_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
         `created_time` datetime                                               DEFAULT NULL COMMENT '创建时间',
-        `updated_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+        `updated_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
         `updated_time` datetime                                               DEFAULT NULL COMMENT '更新时间',
-        `revision`     varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
-        `delete_flag`  varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT '0' COMMENT '删除标志',
+        `revision`     varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
+        `delete_flag`  varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT '0' COMMENT '删除标志',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='选集表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='选集表';
 
     --
     -- Table structure for table `t_service_sku`
@@ -204,14 +204,14 @@ data:
         `id`           int NOT NULL AUTO_INCREMENT COMMENT '可选服务ID',
         `service_id`   int                                                    DEFAULT NULL COMMENT '服务ID',
         `price`        decimal(24, 6)                                         DEFAULT NULL COMMENT '价格',
-        `created_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+        `created_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
         `created_time` datetime                                               DEFAULT NULL COMMENT '创建时间',
-        `updated_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+        `updated_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
         `updated_time` datetime                                               DEFAULT NULL COMMENT '更新时间',
-        `revision`     varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
-        `delete_flag`  varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT '0' COMMENT '删除标志',
+        `revision`     varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
+        `delete_flag`  varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT '0' COMMENT '删除标志',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='可选服务表(SKU)';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='可选服务表(SKU)';
 
     --
     -- Table structure for table `t_service_specification`
@@ -223,15 +223,15 @@ data:
     (
         `id`           bigint NOT NULL AUTO_INCREMENT COMMENT '规格ID',
         `service_id`   bigint                                                  DEFAULT NULL COMMENT '服务ID',
-        `name`         varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '规格名称',
-        `created_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '创建人',
+        `name`         varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '规格名称',
+        `created_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '创建人',
         `created_time` datetime                                                DEFAULT NULL COMMENT '创建时间',
-        `updated_by`   varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '更新人',
+        `updated_by`   varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '更新人',
         `updated_time` datetime                                                DEFAULT NULL COMMENT '更新时间',
-        `revision`     varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci  DEFAULT NULL COMMENT '乐观锁',
+        `revision`     varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci  DEFAULT NULL COMMENT '乐观锁',
         `delete_flag`  varchar(1)                                              DEFAULT '0' COMMENT '删除标志',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='规格表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='规格表';
 
 
     --
@@ -261,10 +261,10 @@ data:
         `updated_by`       varchar(90)                                            DEFAULT NULL COMMENT '更新人',
         `updated_time`     datetime                                               DEFAULT NULL COMMENT '更新时间',
         `delete_flag`      varchar(1)                                             DEFAULT '0' COMMENT '删除标志',
-        `version`          varchar(36) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
+        `version`          varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
         `remark`           varchar(255)                                           DEFAULT NULL COMMENT '订单备注',
         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='任务表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 ROW_FORMAT=COMPACT COMMENT='任务表';
 
     --
     -- Table structure for table `tenant`
@@ -289,7 +289,7 @@ data:
         `UPDATED_TIME` datetime     DEFAULT NULL COMMENT '更新时间',
         `tenant_id`    varchar(32)  DEFAULT NULL COMMENT '租户id',
         PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='租户表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='租户表';
 
     --
     -- Table structure for table `user`
@@ -300,7 +300,7 @@ data:
     CREATE TABLE `housekeeping`.`user`
     (
         `id`              int                                                         NOT NULL AUTO_INCREMENT,
-        `user_id`         varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci         DEFAULT NULL,
+        `user_id`         varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci         DEFAULT NULL,
         `USER_NAME`       varchar(255)                                                         DEFAULT NULL,
         `PASSWORD`        varchar(255)                                                         DEFAULT NULL,
         `USER_ROLE`       int                                                                  DEFAULT NULL,
@@ -311,11 +311,11 @@ data:
         `UPDATED_BY`      varchar(32)                                                          DEFAULT NULL COMMENT '更新人',
         `UPDATED_TIME`    datetime                                                             DEFAULT NULL COMMENT '更新时间',
         `EMAIL`           varchar(100) CHARACTER SET utf16 COLLATE utf16_general_ci            DEFAULT NULL COMMENT '???',
-        `ID_CARD`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci        DEFAULT NULL,
+        `ID_CARD`         varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci        DEFAULT NULL,
         `ACCOUNT_TYPE`    smallint                                                    NOT NULL DEFAULT '1',
-        `delete_flag`     varchar(1) CHARACTER SET utf8mb4 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+        `delete_flag`     varchar(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0',
         PRIMARY KEY (`id`, `delete_flag`) USING BTREE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='用户表';
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户表';
 
     --
     -- 创建默认迁移的数据库
@@ -347,46 +347,46 @@ data:
                                                              `success` tinyint(1) NOT NULL,
                                                              PRIMARY KEY (`installed_rank`),
                                                              KEY `flyway_schema_history_s_idx` (`success`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
     -- housekeeperdb.register_record definition
 
     CREATE TABLE `housekeeperdb`.`register_record` (
                                        `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-                                       `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '邮箱地址',
+                                       `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_german2_ci DEFAULT NULL COMMENT '邮箱地址',
                                        `delete_flag` tinyint DEFAULT '0' COMMENT '0:未删除 1:已删除',
                                        PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_german2_ci;
 
     -- housekeeperdb.message definition
 
     CREATE TABLE `housekeeperdb`.`message` (
                                                `id` bigint NOT NULL AUTO_INCREMENT COMMENT 'id',
-                                               `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
-                                               `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '标题',
-                                               `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '具体内容',
-                                               `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '连接',
+                                               `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                               `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '标题',
+                                               `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '具体内容',
+                                               `link` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '连接',
                                                `message_status` int DEFAULT NULL COMMENT '信息状态{未读，已读，删除}',
-                                               `info_from` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '来自',
-                                               `created_by` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+                                               `info_from` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '来自',
+                                               `created_by` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
                                                `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                               `updated_by` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
+                                               `updated_by` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
                                                `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
                                                PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=1496457136163442691 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='消息表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=1496457136163442691 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='消息表';
 
 
     -- housekeeperdb.properties definition
 
     CREATE TABLE `housekeeperdb`.`properties` (
                                                   `id` bigint NOT NULL AUTO_INCREMENT,
-                                                  `key` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-                                                  `value` varchar(500) CHARACTER SET utf8MB4 COLLATE utf8_bin DEFAULT NULL,
-                                                  `application` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-                                                  `profile` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin NOT NULL,
-                                                  `label` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8_bin DEFAULT NULL,
+                                                  `key` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+                                                  `value` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+                                                  `application` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+                                                  `profile` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+                                                  `label` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
                                                   PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8MB4 COLLATE=utf8_bin;
+    ) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 
     -- housekeeperdb.t_customization definition
@@ -395,28 +395,28 @@ data:
                                                        `config_id` bigint NOT NULL AUTO_INCREMENT COMMENT '配置ID',
                                                        `style_flag` tinyint DEFAULT NULL COMMENT '主题标识',
                                                        `store_name` varchar(50) DEFAULT NULL COMMENT '店名',
-                                                       `tenant_id` varchar(50) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '租户标识',
+                                                       `tenant_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '租户标识',
                                                        PRIMARY KEY (`config_id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8MB4 COMMENT='租户配置表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='租户配置表';
 
 
     -- housekeeperdb.t_housekeeper_service definition
 
     CREATE TABLE `housekeeperdb`.`t_housekeeper_service` (
                                                              `id` bigint NOT NULL AUTO_INCREMENT COMMENT '服务ID',
-                                                             `service_name` varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '服务名称',
-                                                             `service_desc` varchar(500) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '服务描述',
+                                                             `service_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务名称',
+                                                             `service_desc` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务描述',
                                                              `img_src` varchar(500) DEFAULT NULL COMMENT '图片地址',
-                                                             `created_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+                                                             `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
                                                              `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                             `updated_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+                                                             `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
                                                              `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                                             `servie_status` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '服务状态',
-                                                             `delete_flag` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT '0' COMMENT '删除标志',
-                                                             `revision` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
+                                                             `servie_status` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '服务状态',
+                                                             `delete_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0' COMMENT '删除标志',
+                                                             `revision` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
                                                              `display_price` decimal(24,6) DEFAULT NULL COMMENT '服务展示价格',
                                                              PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=1402556441 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='服务主表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=1402556441 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='服务主表';
 
 
     -- housekeeperdb.t_order definition
@@ -445,7 +445,7 @@ data:
                                                `updated_by` varchar(90) DEFAULT NULL COMMENT '更新人',
                                                `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
                                                PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='订单表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='订单表';
 
 
     -- housekeeperdb.t_service_option definition
@@ -453,15 +453,15 @@ data:
     CREATE TABLE `housekeeperdb`.`t_service_option` (
                                                         `id` bigint NOT NULL AUTO_INCREMENT COMMENT '选项ID',
                                                         `specification_id` bigint NOT NULL COMMENT '规格ID',
-                                                        `name` varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '选项名称',
-                                                        `created_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+                                                        `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '选项名称',
+                                                        `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
                                                         `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                        `updated_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+                                                        `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
                                                         `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                                        `revision` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
-                                                        `delete_flag` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT '0' COMMENT '删除标志',
+                                                        `revision` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
+                                                        `delete_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0' COMMENT '删除标志',
                                                         PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='规格选项表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=155 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='规格选项表';
 
 
     -- housekeeperdb.t_service_selection definition
@@ -470,14 +470,14 @@ data:
                                                            `id` bigint NOT NULL AUTO_INCREMENT COMMENT '选集ID',
                                                            `option_id` bigint DEFAULT NULL COMMENT '选项ID',
                                                            `sku_id` bigint DEFAULT NULL COMMENT 'SKU_ID',
-                                                           `created_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+                                                           `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
                                                            `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                           `updated_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+                                                           `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
                                                            `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                                           `revision` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
-                                                           `delete_flag` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT '0' COMMENT '删除标志',
+                                                           `revision` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
+                                                           `delete_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0' COMMENT '删除标志',
                                                            PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='选集表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='选集表';
 
 
     -- housekeeperdb.t_service_sku definition
@@ -486,14 +486,14 @@ data:
                                                      `id` int NOT NULL AUTO_INCREMENT COMMENT '可选服务ID',
                                                      `service_id` int DEFAULT NULL COMMENT '服务ID',
                                                      `price` decimal(24,6) DEFAULT NULL COMMENT '价格',
-                                                     `created_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+                                                     `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
                                                      `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                     `updated_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+                                                     `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
                                                      `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                                     `revision` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
-                                                     `delete_flag` varchar(1) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT '0' COMMENT '删除标志',
+                                                     `revision` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
+                                                     `delete_flag` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '0' COMMENT '删除标志',
                                                      PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='可选服务表(SKU)';
+    ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='可选服务表(SKU)';
 
 
     -- housekeeperdb.t_service_specification definition
@@ -501,15 +501,15 @@ data:
     CREATE TABLE `housekeeperdb`.`t_service_specification` (
                                                                `id` bigint NOT NULL AUTO_INCREMENT COMMENT '规格ID',
                                                                `service_id` bigint DEFAULT NULL COMMENT '服务ID',
-                                                               `name` varchar(255) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '规格名称',
-                                                               `created_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '创建人',
+                                                               `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '规格名称',
+                                                               `created_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
                                                                `created_time` datetime DEFAULT NULL COMMENT '创建时间',
-                                                               `updated_by` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '更新人',
+                                                               `updated_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
                                                                `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
-                                                               `revision` varchar(32) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT NULL COMMENT '乐观锁',
+                                                               `revision` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '乐观锁',
                                                                `delete_flag` varchar(1) DEFAULT '0' COMMENT '删除标志',
                                                                PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=810397703 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='规格表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=810397703 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='规格表';
 
 
     -- housekeeperdb.t_task definition
@@ -534,10 +534,10 @@ data:
                                               `updated_by` varchar(90) DEFAULT NULL COMMENT '更新人',
                                               `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
                                               `delete_flag` varchar(1) DEFAULT '0' COMMENT '删除标志',
-                                              `version` varchar(36) CHARACTER SET utf8MB4 COLLATE utf8MB4_general_ci DEFAULT 'UUID()' COMMENT '乐观锁',
+                                              `version` varchar(36) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'UUID()' COMMENT '乐观锁',
                                               `remark` varchar(255) DEFAULT NULL COMMENT '订单备注',
                                               PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=5043 DEFAULT CHARSET=utf8MB4 ROW_FORMAT=COMPACT COMMENT='任务表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=5043 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='任务表';
 
 
     -- housekeeperdb.tenant definition
@@ -558,29 +558,29 @@ data:
                                               `UPDATED_TIME` datetime DEFAULT NULL COMMENT '更新时间',
                                               `tenant_id` varchar(32) DEFAULT NULL COMMENT '租户id',
                                               PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=307814576 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci COMMENT='消息表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=307814576 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='消息表';
 
 
     -- housekeeperdb.`user` definition
 
     CREATE TABLE `housekeeperdb`.`user` (
                                             `id` int NOT NULL AUTO_INCREMENT,
-                                            `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
-                                            `USER_NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
-                                            `PASSWORD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
+                                            `user_id` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                            `USER_NAME` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                            `PASSWORD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
                                             `USER_ROLE` int DEFAULT NULL,
-                                            `DEFAULT_ADDRESS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
-                                            `PHONE_NO` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL,
-                                            `CREATED_BY` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+                                            `DEFAULT_ADDRESS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                            `PHONE_NO` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+                                            `CREATED_BY` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '创建人',
                                             `CREATED_TIME` datetime DEFAULT NULL COMMENT '创建时间',
-                                            `UPDATED_BY` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
+                                            `UPDATED_BY` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL COMMENT '更新人',
                                             `UPDATED_TIME` datetime DEFAULT NULL COMMENT '更新时间',
                                             `EMAIL` varchar(100) CHARACTER SET utf16 COLLATE utf16_general_ci NOT NULL COMMENT '???',
-                                            `ID_CARD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8_general_ci NOT NULL,
+                                            `ID_CARD` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
                                             `ACCOUNT_TYPE` smallint DEFAULT '1',
                                             `test` varchar(255) NOT NULL,
                                             PRIMARY KEY (`id`) USING BTREE
-    ) ENGINE=InnoDB AUTO_INCREMENT=1860849668 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci ROW_FORMAT=DYNAMIC COMMENT='用户表';
+    ) ENGINE=InnoDB AUTO_INCREMENT=1860849668 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci ROW_FORMAT=DYNAMIC COMMENT='用户表';
 
 
     DROP TABLE IF EXISTS `t_service_image`;
@@ -589,7 +589,7 @@ data:
 
     CREATE TABLE `t_service_image` (
       `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-      `image_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8_general_ci NOT NULL COMMENT '图片id',
+      `image_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL COMMENT '图片id',
       `service_id` varchar(100) DEFAULT NULL COMMENT '服务id',
       `image_name` varchar(200) NOT NULL COMMENT '图片名称',
       `type` varchar(100) NOT NULL COMMENT '图片类型',
@@ -599,4 +599,4 @@ data:
       `updated_by` varchar(100) DEFAULT NULL COMMENT '更新人',
       `updated_time` datetime DEFAULT NULL COMMENT '更新时间',
       PRIMARY KEY (`id`)
-    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8_general_ci;
+    ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
