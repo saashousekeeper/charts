@@ -16,7 +16,7 @@ entries:
       appVersion: latest
       created: "2023-02-28T14:15:13.197352752Z"
       description: for huaweicloud deploy
-      digest: a1cba1d4bdf14c8bb641a48k5c69ec64e7h2bx7a87da8af1c28fee61f43fa3ef
+      digest: a1cba1d4bdf14c8bb641a8af1c281a48k5c8ee66rec64e7h2bx7a87df43fa3ef
       name: hw-housekeeper
       type: application
       urls:
