@@ -19,6 +19,7 @@ To install the <chart-name> chart:
 ```
 
 To uninstall the chart:
+
 ```
     helm delete my-<chart-name>
 ```
