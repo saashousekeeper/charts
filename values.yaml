@@ -11,6 +11,7 @@ global:
   mysqlHost: mysql
   mysqlUsername: "root"
   mysqlPassword: "1234"
+  frontend.address:
 
 nameOverride: ""
 fullnameOverride: ""

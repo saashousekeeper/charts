@@ -4,6 +4,9 @@
 
 replicaCount: 1
 
+global:
+  frontend.address:
+
 image:
   #registry: docker.io
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/frontend

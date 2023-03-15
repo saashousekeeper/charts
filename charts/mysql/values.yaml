@@ -8,11 +8,12 @@ env:
   rootPassword: 1234
 
 image:
-  repository: bitnami/mysql
+  repository: mysql
   pullPolicy: IfNotPresent
-  tag: "8.0.32-debian-11-r14"
+  tag: "8.0"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: default-secret
 nameOverride: ""
 fullnameOverride: ""
 
