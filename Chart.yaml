@@ -1,32 +1,21 @@
 apiVersion: v2
-appVersion: "1.0.0"
+appVersion: 1.0.0
+dependencies:
+- name: mysql
+  repository: ""
+  version: 1.0.0
+- name: rabbitmq
+  repository: ""
+  version: 1.0.0
+- name: config-server
+  repository: ""
+  version: 1.0.0
+- name: eureka
+  repository: ""
+  version: 1.0.0
+- name: frontend
+  repository: ""
+  version: 1.0.0
 description: Helm Chart for Product Catalog Workshop
 name: housekeeper
 version: 1.0.0
-dependencies:
-  - name: mysql
-    version: 1.0.0
-  - name: rabbitmq
-    version: 1.0.0
-  - name: eureka
-    version: 1.0.0
-  - name: config-server
-    version: 1.0.0
-  - name: frontend
-    version: 1.0.0
-  - name: tenantinfo
-    version: 1.0.0
-  - name: event-tracking
-    version: 1.0.0
-  - name: gateway
-    version: 1.0.0
-  - name: message
-    version: 1.0.0
-  - name: order
-    version: 1.0.0
-  - name: publish
-    version: 1.0.0
-  - name: task
-    version: 1.0.0
-  - name: userinfo
-    version: 1.0.0
