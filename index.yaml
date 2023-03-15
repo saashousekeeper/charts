@@ -9,6 +9,6 @@ entries:
       name: housekeeper
       type: application
       urls:
-        - https://github.com/saashousekeeper/charts/raw/main/alpine/housekeeper-1.0.0.tgz
+        - https://github.com/saashousekeeper/charts/raw/alpine/alpine/housekeeper-1.0.0.tgz
       version: 1.0.0 #应用版本
 generated: "2023-02-27T11:38:13.197373951Z"
