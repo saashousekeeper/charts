@@ -48,21 +48,21 @@ spec:
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.managerNodePort }}
       {{- end }}
-      targetPort: http
+      targetPort: {{ .Values.rabbitmqManagerPort }}
     - name: amqp
       protocol: TCP
       port: {{ .Values.rabbitmqNodePort }}
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.amqpNodePort }}
       {{- end }}
-      targetPort: amqp
+      targetPort: {{ .Values.rabbitmqNodePort }}
     - name: epmd
       protocol: TCP
       port: {{ .Values.rabbitmqEpmdPort }}
       {{- if eq .Values.service.type "NodePort" "LoadBalancer" }}
       nodePort: {{ .Values.service.epmdNodePort }}
       {{- end }}
-      targetPort: epmd
+      targetPort: {{ .Values.rabbitmqEpmdPort }}
     {{- if .Values.rabbitmqSTOMPPlugin.enabled }}
     - name: stomp-tcp
       protocol: TCP
