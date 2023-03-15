@@ -15,10 +15,10 @@ global:
   mysqlPassword:
 
 image:
-  repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-order-service
+  repository: saashousekeeper/order
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.1.9"
+  tag: "1.0.0"
 
 imagePullSecrets:
   - name: default-secret

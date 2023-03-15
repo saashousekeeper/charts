@@ -8,11 +8,11 @@ global:
   frontend.address:
 
 image:
-  #registry: docker.io
-  repository: swr.cn-south-1.myhuaweicloud.com/tansj/frontend
+  registry: docker.io
+  repository: saashousekeeper/frontend
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.0"
+  tag: "1.0.0"
 
 imagePullSecrets:
   - name: default-secret
