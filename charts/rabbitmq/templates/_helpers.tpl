@@ -12,14 +12,14 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 If release name contains chart name it will be used as a full name.
 */}}
 {{- define "rabbitmq.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- $name := default .Chart.Name .Values.nameOverride -}}
-{{- if contains $name .Release.Name -}}
-{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- if .Values.fullnameOverride -}}  #判断如果有 .Values.fullnameOverride 这个取值
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}  #那么就取前面63个字符，去掉"-"
+{{- else -}} # 否则
+{{- $name := default .Chart.Name .Values.nameOverride -}} #定义变量name   如果  .Values.nameOverride为空的，那么就取默认default的值 .Chart.Name
+{{- if contains $name .Release.Name -}} # 如果name中包含 .Release.Name
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}  # 就取.Release.Name的前63个字符，末尾去掉"-"
+{{- else -}} # 否则
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}} # 就以占位符的方式，输出 .Release.Name-$name  的前63个字符，末尾去掉"-"
 {{- end -}}
 {{- end -}}
 {{- end -}}
