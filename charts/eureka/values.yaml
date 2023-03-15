@@ -8,7 +8,7 @@ image:
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-eureka
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.0.0"
+  tag: "v1.0.4"
 
 imagePullSecrets:
   - name: default-secret
@@ -42,6 +42,7 @@ service:
   type: ClusterIP
   port: 8761
   targetPort: 8761
+  nodePort: 32300
 ingress:
   enabled: false
   annotations: {}

@@ -177,7 +177,7 @@ rabbitmqNodePort: 5672
 
 ## Manager port
 rabbitmqManagerPort: 15672
-
+rabbitmqManagerNodePort: 32672
 ## Set to true to precompile parts of RabbitMQ with HiPE, a just-in-time
 ## compiler for Erlang. This will increase server throughput at the cost of
 ## increased startup time. You might see 20-50% better performance at the cost

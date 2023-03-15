@@ -43,6 +43,7 @@ service:
   name: mysql
   type: ClusterIP
   port: 3306
+  nodePort: 32123
 
 ingress:
   enabled: false

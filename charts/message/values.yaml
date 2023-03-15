@@ -3,15 +3,15 @@
 # Declare variables to be passed into your templates.
 
 global:
-  active: pro
-  eurekaDefaultZone: http://eurekaAdmin:123456@eureka.default.svc.cluster.local:8761/eureka
-  configServer: http://config-server.default.svc.cluster.local:3344
-  rabbitmq: rabbitmq.default.svc.cluster.local
-  rabbitmqUsername: "guest"
-  rabbitmqPassword: "guest"
-  mysqlHost: mysql.default.svc.cluster.local
-  mysqlUsername: "root"
-  mysqlPassword: "1234"
+  active:
+  eurekaDefaultZone:
+  configServer:
+  rabbitmq:
+  rabbitmqUsername:
+  rabbitmqPassword:
+  mysqlHost:
+  mysqlUsername:
+  mysqlPassword:
 
 
 replicaCount: 1

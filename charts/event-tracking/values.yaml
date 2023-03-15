@@ -2,13 +2,18 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  active:
+  eurekaDefaultZone:
+  configServer:
+
 replicaCount: 1
 
 image:
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-event-tracking
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.1.0"
+  tag: "v1.0.0"
 
 imagePullSecrets:
   - name: default-secret

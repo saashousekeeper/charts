@@ -52,6 +52,7 @@ service:
   name: config-server
   type: ClusterIP
   port: 3344
+  nodePort: 32334
 
 ingress:
   enabled: false

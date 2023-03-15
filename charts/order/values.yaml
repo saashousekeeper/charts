@@ -3,6 +3,16 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
+global:
+  active:
+  eurekaDefaultZone:
+  configServer:
+  rabbitmq:
+  rabbitmqUsername:
+  rabbitmqPassword:
+  mysqlHost:
+  mysqlUsername:
+  mysqlPassword:
 
 image:
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-order-service
