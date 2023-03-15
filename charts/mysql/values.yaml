@@ -8,9 +8,9 @@ env:
   rootPassword: 1234
 
 image:
-  repository: saashousekeeper/mysql
+  repository: bitnami/mysql
   pullPolicy: IfNotPresent
-  tag: "1.0.0"
+  tag: "8.0.32-debian-11-r14"
 
 imagePullSecrets: []
 nameOverride: ""
