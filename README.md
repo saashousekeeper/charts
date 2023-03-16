@@ -1,4 +1,4 @@
-## The saashousekeeper Library for HuaweiCloud CCE
+## The saashousekeeper Library for Kubernetes
 ```
 helm repo add my-repo https://saashousekeeper.github.io/charts/
 ```
