@@ -4,16 +4,6 @@
 
 replicaCount: 1
 
-global:
-  active:
-  eurekaDefaultZone:
-  rabbitmq:
-  rabbitmqUsername:
-  rabbitmqPassword:
-  mysqlHost:
-  mysqlUsername:
-  mysqlPassword:
-
 image:
   repository: saashousekeeper/config-server
   pullPolicy: IfNotPresent

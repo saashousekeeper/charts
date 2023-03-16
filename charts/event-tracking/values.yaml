@@ -2,10 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-global:
-  active: pro
-  eurekaDefaultZone:
-  configServer:
 
 replicaCount: 1
 
