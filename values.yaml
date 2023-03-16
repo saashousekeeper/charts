@@ -7,6 +7,7 @@ global:
   configServer: http://config-server.default.svc.cluster.local:3344
   rabbitmqHost: rabbitmq.default.svc.cluster.local
   mysqlHost: mysql
+  frontendAddress:
 
   giteePassword: dG9tb3Jyb3cwLjA=
   giteeUser: emFjaGFyeXkyMDIzQG91dGxvb2suY29t
@@ -14,7 +15,6 @@ global:
   mysqlUsername: cm9vdA==
   rabbitmqPassword: Z3Vlc3Q=
   rabbitmqUsername: Z3Vlc3Q=
-  frontendAddress:
 
 nameOverride: ""
 fullnameOverride: ""
