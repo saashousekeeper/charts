@@ -36,27 +36,11 @@ spec:
             - name: http
               containerPort: 3344
               protocol: TCP
-          env:
-            - name: SPRING_PROFILES_ACTIVE
-              value: {{ .Values.global.active }}
-            - name: eureka.defaultZone
-              value: {{ .Values.global.eurekaDefaultZone }}
-            - name: rabbitmq.host
-              value: {{ .Values.global.rabbitmq }}
-            - name: rabbitmq.username
-              value: {{ .Values.global.rabbitmqUsername }}
-            - name: rabbitmq.password
-              value: {{ .Values.global.rabbitmqPassword }}
-            - name: mysql.host
-              value: {{ .Values.global.mysqlHost }}
-            - name: mysql.username
-              value: "root"
-            - name: mysql.password
-              value: "1234"
-            - name: giteeUser
-              value: "zacharyy2023@outlook.com"
-            - name: giteePassword
-              value: "tomorrow0.0"
+          envFrom:
+            - secretRef:
+                name: config
+            - configMapRef:
+                name: config
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

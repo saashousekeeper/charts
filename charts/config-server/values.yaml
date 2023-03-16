@@ -4,16 +4,6 @@
 
 replicaCount: 1
 
-global:
-  active:
-  eurekaDefaultZone:
-  rabbitmq:
-  rabbitmqUsername:
-  rabbitmqPassword:
-  mysqlHost:
-  mysqlUsername:
-  mysqlPassword:
-
 image:
   registry:
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-config-server

@@ -2,18 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-global:
-  active:
-  eurekaDefaultZone:
-  configServer:
-  rabbitmq:
-  rabbitmqUsername:
-  rabbitmqPassword:
-  mysqlHost:
-  mysqlUsername:
-  mysqlPassword:
-
-
 replicaCount: 1
 
 image:

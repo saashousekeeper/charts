@@ -4,8 +4,6 @@
 
 replicaCount: 1
 
-global:
-  frontend.address:
 
 image:
   #registry: docker.io
