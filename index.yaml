@@ -1,6 +1,7 @@
 apiVersion: v1 #chart API 版本
 entries:
   housekeeper:
+    - apiVersion: v3
       created: "2023-02-28T14:15:13.197352752Z"
       description: for huaweiCloud CCE deploy
       digest: a1cba1d4bdf14c8bb641a48k5c69ec64e7h2bx7a87da8af1c28fee61f43fa3ef
