@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.service.name }}
+  name: {{ include "config-server.fullname" . }}
   labels:
-    {{ .Values.service.name | nindent 4 }}
+    {{- include "config-server.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      app: {{ .Values.service.name }}
+      {{- include "config-server.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,11 +18,11 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        app: {{ .Values.service.name }}
+        {{- include "config-server.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
-      - name: default-secret
+        {{- toYaml . | nindent 8 }}
       {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
@@ -34,7 +34,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 3344
+              containerPort: {{ .Values.service.port }}
               protocol: TCP
           envFrom:
             - secretRef:
