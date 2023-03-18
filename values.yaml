@@ -5,7 +5,7 @@ global:
   active: pro
   eurekaDefaultZone: http://eurekaAdmin:123456@eureka.default.svc.cluster.local:8761/eureka
   configServer: http://config-server.default.svc.cluster.local:3344
-  rabbitmqHost: rabbitmq.default.svc.cluster.local
+  rabbitmqHost: rabbitmq
   mysqlHost: mysql
 
   giteePassword: dG9tb3Jyb3cwLjA=
