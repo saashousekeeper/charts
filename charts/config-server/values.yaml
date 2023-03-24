@@ -8,7 +8,7 @@ image:
   repository: swr.cn-south-1.myhuaweicloud.com/tansj/saas-housekeeper-config-server
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.1.6"
+  tag: "v1.1.7"
 
 imagePullSecrets:
   - name: default-secret
